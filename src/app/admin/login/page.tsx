@@ -12,15 +12,23 @@ import { Shield, ArrowLeft } from "lucide-react"
 export default function AdminLoginPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("admin@bffp.org")
+  const [password, setPassword] = useState("password123")
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     
-    // Simulate login
     setTimeout(() => {
       setLoading(false)
-      router.push("/admin")
+      if (
+        (email === "admin@bffp.org" || email === "admin@bffp.edu.pk" || email === "admin") &&
+        password === "password123"
+      ) {
+        router.push("/admin")
+      } else {
+        alert("Invalid administrator credentials. Please use admin@bffp.org / password123")
+      }
     }, 1000)
   }
 
@@ -56,10 +64,11 @@ export default function AdminLoginPage() {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700">Admin Email</label>
                   <Input 
-                    type="email" 
+                    type="text" 
                     placeholder="admin@bffp.org" 
                     required 
-                    defaultValue="admin@bffp.org"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -70,7 +79,8 @@ export default function AdminLoginPage() {
                     type="password" 
                     placeholder="••••••••" 
                     required 
-                    defaultValue="password123"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 
@@ -88,6 +98,13 @@ export default function AdminLoginPage() {
                   )}
                 </Button>
               </form>
+              
+              <div className="mt-6 text-center text-sm">
+                <span className="text-slate-500">Are you a Teacher? </span>
+                <Link href="/login" className="font-semibold text-brand-600 hover:underline">
+                  Teacher Login
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </motion.div>

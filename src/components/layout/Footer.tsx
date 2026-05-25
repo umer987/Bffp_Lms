@@ -56,6 +56,7 @@ export function Footer() {
             <li><Link href="#programs" className="hover:text-brand-400 transition-colors">Programs</Link></li>
             <li><Link href="#impact" className="hover:text-brand-400 transition-colors">Impact</Link></li>
             <li><Link href="/login" className="hover:text-brand-400 transition-colors">Teacher Portal</Link></li>
+            <li><Link href="/admin/login" className="hover:text-brand-400 transition-colors">Admin Portal</Link></li>
           </ul>
         </div>
         

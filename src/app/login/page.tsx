@@ -38,6 +38,9 @@ function LoginForm() {
         const dummy = { id: "T-0000", name: "Dummy Teacher", assignedCourses: [] }
         localStorage.setItem('currentTeacher', JSON.stringify(dummy))
         router.push("/teacher")
+      } else if ((username === "admin@bffp.org" || username === "admin@bffp.edu.pk" || username === "admin") && password === "password123") {
+        // Smart fallback: if they enter admin credentials in the main login page, log them in as admin
+        router.push("/admin")
       } else {
         alert("Invalid username or password.")
       }
@@ -92,6 +95,13 @@ function LoginForm() {
             )}
           </Button>
         </form>
+        
+        <div className="mt-6 text-center text-sm">
+          <span className="text-slate-500">Are you an Administrator? </span>
+          <Link href="/admin/login" className="font-semibold text-brand-600 hover:underline">
+            Admin Login
+          </Link>
+        </div>
       </CardContent>
     </Card>
   )
